@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL to QR Code Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa;
+        }
+        #container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        canvas {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>URL to QR Code Generator</h1>
+        <input type="text" id="urlInput" placeholder="Enter URL" />
+        <br>
+        <button id="generateBtn">Generate QR Code</button>
+        <canvas id="qrCodeCanvas"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+        const qr = new QRious({
+            element: document.getElementById('qrCodeCanvas'),
+            size: 200,
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const url = document.getElementById('urlInput').value;
+            if (url) {
+                qr.value = url;
+            } else {
+                alert('Please enter a valid URL');
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            width: 900px; /* Increased width */
+            max-width: 100%;
+        }
+
+        .text-area {
+            padding: 30px;
+            flex: 2; /* Increased space for the text area */
+            background-color: black;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px; /* Increased height */
+            padding: 20px;
+            font-size: 16px;
+            border: none; /* Removed border */
+            border-radius: 8px;
+            resize: none;
+            background-color: #f7f8fa;
+            outline: none; /* Removed focus outline */
+        }
+
+        .counter {
+            padding: 20px;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .counter div {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .counter h2 {
+            margin: 0;
+            font-size: 2.5em;
+            color: white;
+        }
+
+        .counter p {
+            margin: 5px 0;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-area">
+            <textarea id="textInput" placeholder="Enter or paste your text"></textarea>
+        </div>
+        <div class="counter">
+            <div>
+                <h2 id="wordCount">0</h2>
+                <p>Words</p>
+            </div>
+            <div>
+                <h2 id="charCount">0</h2>
+                <p>Characters</p>
+            </div>
+            <div>
+                <h2 id="sentenceCount">0</h2>
+                <p>Sentences</p>
+            </div>
+            <div>
+                <h2 id="paragraphCount">0</h2>
+                <p>Paragraphs</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('textInput').addEventListener('input', function () {
+            let text = this.value;
+
+            // Word Count
+            let wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            document.getElementById('wordCount').textContent = wordCount;
+
+            // Character Count
+            let charCount = text.length;
+            document.getElementById('charCount').textContent = charCount;
+
+            // Sentence Count
+            let sentenceCount = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length;
+            document.getElementById('sentenceCount').textContent = sentenceCount;
+
+            // Paragraph Count
+            let paragraphCount = text.split(/\n+/).filter(paragraph => paragraph.trim().length > 0).length;
+            document.getElementById('paragraphCount').textContent = paragraphCount;
+        });
+    </script>
+</body>
+</html>
